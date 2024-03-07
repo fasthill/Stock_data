@@ -1,13 +1,14 @@
 from selenium import webdriver as wd
 from selenium.webdriver.chrome.service import Service
 
+from selenium.webdriver.common.by import By
+
 import time
 
 # set driver
 def open_browser():
     service = Service(r"chromedriver.exe")
-    options = wd.C
-    hromeOptions()
+    options = wd.ChromeOptions()
     options.add_experimental_option("detach", True)  # let windows stay open, this prevents windows from disappearing
 
     return wd.Chrome(service=service, options=options)
