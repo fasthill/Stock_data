@@ -24,15 +24,21 @@ from open_window_individual_stock_trend import open_window_individual_stock_tren
 from set_date_n_search import set_date_n_search
 from get_data_table import get_data_table
 
-def non_empty_index_df(df_input, start_date, end_date): # 토,일,공휴일등 거래가 없는 일자도 모두 포함
+def non_empty_index_df(df_in, start_date, end_date): # 토,일,공휴일등 거래가 없는 일자도 모두 포함
     date_range_ts = pd.date_range(start=start_date, end=end_date)
-    df_input.set_index('date', inplace=True)
-    df_out = pd.DataFrame(columns = df_input.columns)
+    df_in.set_index('date', inplace=True)
+    df_out = pd.DataFrame(columns = df_in.columns)
     df_out.insert(0, 'date', date_range_ts)
     df_out.set_index('date', inplace=True)
-    df_out.update(df_input)
+    df_out.update(df_in)
     df_out.reset_index(inplace=True)
-    return df_out
+
+    df_o = pd.concat([df_out, df_in], ignore_index=True)
+    df_o.drop_duplicates(subset=['date'], keep='last', inplace=True)
+    df_o.sort_values(by=[df_o.columns[0]], inplace=True)
+    df_o.index = np.arange(0, len(df_o))  # 일련 번호 오름차순으로 재 설정
+
+    return df_o
 
 
 if __name__ == '__main__':
@@ -57,7 +63,7 @@ if __name__ == '__main__':
 
     df = get_data_table(driver)
 
-    df = non_empty_index_df(df, start_date, end_date)
+    df_o = non_empty_index_df(df, start_date, end_date)
 
     time.sleep(5)  # wait before close
     driver.close()
