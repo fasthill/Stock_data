@@ -22,6 +22,10 @@ def get_data_table(driver):  # table data 취득 and return dataframe
 
     # read_html로 먼저 읽고 같은 column형식으로 70~80개씩 끊어서 df를 형성하여 concat으로 처리하는 로직 필요
 
+    # c_tr = '#jsMdiContent > div > div.CI-GRID-AREA.CI-GRID-ON-WINDOWS.CI-GRID-CLICKED > div.CI-GRID-WRAPPER > div.CI-GRID-MAIN-WRAPPER > div.CI-GRID-BODY-WRAPPER > div > div > table > tbody > tr'
+    # no_of_rows = driver.find_elements(By.CSS_SELECTOR, c_tr)
+    # print("*************", len(no_of_rows))
+
     df = \
     pd.read_html(io.StringIO(str(driver.page_source)), attrs={"class": "CI-GRID-BODY-TABLE"}, flavor=["lxml", "bs4"])[0]
 
