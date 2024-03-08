@@ -24,7 +24,7 @@ def set_date_n_search(driver, start_date_str, end_date_str):  # 일정 기간 �
     id_name = 'jsSearchButton'
     element = WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.ID, id_name)))
     driver.find_element(By.ID, id_name).click()
-    time.sleep(1)
+    time.sleep(2)
 
     return
 
