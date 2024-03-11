@@ -21,9 +21,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from open_browser import open_browser
 from set_current_unit import set_current_unit
-from open_window_individual_stock_trend import open_window_individual_stock_trend
+from open_window_historical_data import open_window_historical_data
 from set_date_n_search import set_date_n_search
-from get_data_table import get_data_table
+from get_historical_data_table import get_historical_data_table
 from merge_df import merge_df
 
 from data.constant.constants import COMPANY_CODE
@@ -35,9 +35,9 @@ main_url = 'http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MD
 driver = open_browser()
 driver.get(main_url)
 
-set_current_unit(driver)
+set_current_unit(driver, 1)
 
-data_directory = 'data/trend_data/'
+data_directory = 'data/historical_data/'
 total = len(code)
 
 for i, (key, val) in enumerate(code.items()):
@@ -49,7 +49,7 @@ for i, (key, val) in enumerate(code.items()):
     except:
         start_date = datetime.date(2022, 1, 1)  # 데이터 취득 시작 일자
 
-    open_window_individual_stock_trend(driver, com_name)
+    open_window_historical_data(driver, com_name)
 
     start_date = datetime.date(2022, 12, 27)
     end_date = datetime.date(2023, 1, 7)
@@ -57,7 +57,7 @@ for i, (key, val) in enumerate(code.items()):
     end_str = end_date.strftime('%Y-%m-%d')
     set_date_n_search(driver, start_str, end_str)
 
-    df_get = get_data_table(driver)
+    df_get = get_historical_data_table(driver)
 
     df_o = merge_df(df_o, df_get, 0) # 0번 칼럼 기준으로 정렬
 
@@ -65,3 +65,9 @@ for i, (key, val) in enumerate(code.items()):
     df_o.to_csv(data_directory + pkl_name.replace('pkl', 'csv'))
 
     print(com_name, f'{i + 1}/{total}', end=', ')  # 진행상황 확인용
+
+    if i == 0:
+        break
+
+driver.close()
+driver.quit()

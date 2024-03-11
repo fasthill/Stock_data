@@ -6,7 +6,7 @@ import time
 import datetime
 
 from open_browser import open_browser
-from open_window_individual_stock_trend import open_window_individual_stock_trend
+from open_window_historical_data import open_window_historical_data
 from set_current_unit import set_current_unit
 
 def set_date_n_search(driver, start_date_str, end_date_str):  # 일정 기간 데이터 취득
@@ -35,11 +35,11 @@ if __name__ == '__main__':
     driver = open_browser()
     driver.get(main_url)
 
-    set_current_unit(driver)
+    set_current_unit(driver, 1)
 
     # test function
     com_name = '005930/삼성전자'  # '000660/SK하이닉스'
-    open_window_individual_stock_trend(driver, com_name)
+    open_window_historical_data(driver, com_name)
 
     # date형식 변환후 입력
     start_date = datetime.date(2024, 1, 1)
