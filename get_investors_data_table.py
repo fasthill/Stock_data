@@ -20,6 +20,7 @@ def convert_date(s_date, e_date):
     for x in date_range_ts:
         date_range.append(datetime.datetime.strftime(x, "%Y%m%d"))
     return date_range
+
 def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and return dataframe
     # 여기에 set data n search를 같이 집어 넣어서 table를 찾아야 함.
     # 매일 매일의 테이블을 append 시켜서 한개의 table로 만들어 반환해야함.
@@ -35,17 +36,15 @@ def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and r
     for datei in date_range:
 
         date = datetime.datetime.strptime(datei, "%Y%m%d").date()
-        if date in list(opening_days_kor):
-            return True
-            print(date)
-        else:
-            return False
-
-        if not is_opening_day(datei):
+        if date not in list(opening_days_kor):
             continue
-    # for
-    # set_date_n_search(driver, start_str, end_str, 2)
 
+        date_str = date.strftime('%Y-%m-%d')
+        set_date_n_search(driver, date_str, date_str, 2)
+
+        df = pd.read_html(io.StringIO(str(driver.page_source)),
+                          attrs={"class": "CI-GRID-BODY-TABLE"}, flavor=["lxml", "bs4"])[0]
+        print("PPP")
     return # df_get_c
 
 

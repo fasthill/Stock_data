@@ -13,18 +13,18 @@ def open_investors_window(driver):
 
     time.sleep(1)
     # jsOpenView_1 element 까지 스크롤
-    stop_tag = driver.find_element(By.ID, 'jsOpenView_1')
+    # id가 jsOpenView_1 인 element 를 찾음
+    search_button = driver.find_element(By.ID, 'jsOpenView_1')
     action = ActionChains(driver)
-    action.move_to_element(stop_tag).perform()
+    action.move_to_element(search_button).perform()
 
     # Message: element not interactable Error 방지용. 클릭하기 위하여는 그 위치가 클릭할 수 있게 노출되어 있어야 함
     # 투자자별 거래실적 버튼이 위치한 곳으로 화면 scroll
     element = WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.ID, 'jsOpenView_1')))
-    # id가 jsOpenView_1 인 element 를 찾음
-    stop_tag = driver.find_element(By.ID, 'jsOpenView_1')
 
     # 투자자별 거래 실적 버튼 클릭
-    driver.find_element(By.ID, 'jsOpenView_1').click()
+    # driver.find_element(By.ID, 'jsOpenView_1').click()
+    search_button.click()
     time.sleep(2)
 
     return
