@@ -9,15 +9,20 @@ from open_browser import open_browser
 from open_window_historical_data import open_window_historical_data
 from set_current_unit import set_current_unit
 
-def set_date_n_search(driver, start_date_str, end_date_str):  # 일정 기간 데이터 취득
+def set_date_n_search(driver, start_date_str, end_date_str, his_inv = 1):  # 일정 기간 데이터 취득
     # end_date를 먼저 입력하고 start date 입력. 반대로 하면 start date가 이전날짜로  reset되어짐
     # "2024-01-01" 형식의 string
     driver.find_element(By.ID, 'endDd').clear()
     driver.find_element(By.ID, 'endDd').send_keys(end_date_str)
     time.sleep(1)
 
-    driver.find_element(By.ID, 'strdDd').clear()
-    driver.find_element(By.ID, 'strdDd').send_keys(start_date_str)
+    if his_inv == 1:
+        id_name = 'strdDd'
+    else:
+        id_name = 'strtDd'
+
+    driver.find_element(By.ID, id_name).clear()
+    driver.find_element(By.ID, id_name).send_keys(start_date_str)
     time.sleep(1)
 
     # 테이블  취득 버튼 클릭 (우상귀)
@@ -46,7 +51,7 @@ if __name__ == '__main__':
     end_date = datetime.date(2024, 3, 1)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
-    set_date_n_search(driver, start_str, end_str)
+    set_date_n_search(driver, start_str, end_str, 2)
 
     time.sleep(5)  # wait before close
     driver.close()

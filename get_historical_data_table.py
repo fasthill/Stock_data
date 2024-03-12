@@ -63,7 +63,7 @@ if __name__ == '__main__':
     end_date = datetime.date(2024, 3, 7)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
-    set_date_n_search(driver, start_str, end_str)
+    set_date_n_search(driver, start_str, end_str, 1)
 
     df = get_historical_data_table(driver)
 
