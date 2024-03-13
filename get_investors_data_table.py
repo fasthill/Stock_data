@@ -31,7 +31,7 @@ def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and r
     base_data_directory = './data/base_data/stock_market_holydays/'
     opening_days_kor = pd.read_pickle(base_data_directory+'opening_days_kor.pkl') # 한국 개장일 데이터
 
-    date_range = convert_date(start_date, end_date)
+    date_range = convert_date(s_date, e_date)
 
     df_org = None
     for datei in date_range:

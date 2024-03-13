@@ -24,18 +24,33 @@ from set_current_unit import set_current_unit
 from open_window_historical_data import open_window_historical_data
 from set_date_n_search_inv import set_date_n_search_inv
 from get_investors_data_table import get_investors_data_table
+from open_window_investors_data import open_window_investors_data
+from open_investors_window import open_investors_window
 from merge_df import merge_df
 
 from data.constant.constants import COMPANY_CODE
 code = COMPANY_CODE
 
 # open browser
-main_url = 'http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020103'
+main_url = 'http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020203'
 # 개별종목 시세추이 data-menu-id: MDC0201020103
+
 driver = open_browser()
 driver.get(main_url)
 
+open_investors_window(driver)
+#
 set_current_unit(driver, 2)
+
+# test function
+code_n_name = '005930/삼성전자'  # '000660/SK하이닉스'
+# open_window_investors_data(driver, code_n_name)
+
+# date형식 변환후 입력
+start_date = datetime.date(2024, 3, 4)
+end_date = datetime.date(2024, 3, 6)
+start_str = start_date.strftime('%Y-%m-%d')
+end_str = end_date.strftime('%Y-%m-%d')
 
 data_directory = 'data/investors_data/'
 total = len(code)
@@ -49,7 +64,7 @@ for i, (key, val) in enumerate(code.items()):
     except:
         start_date = datetime.date(2022, 1, 1)  # 데이터 취득 시작 일자
 
-    open_window_historical_data(driver, com_name)
+    open_window_investors_data(driver, com_name)
 
     start_date = datetime.date(2022, 12, 27)
     end_date = datetime.date(2023, 1, 7)
@@ -57,12 +72,12 @@ for i, (key, val) in enumerate(code.items()):
     end_str = end_date.strftime('%Y-%m-%d')
     set_date_n_search_inv(driver, start_str, end_str)
 
-    df_get = get_investors_data_table(driver)
+    df_get = get_investors_data_table(driver, start_date, end_date)
 
     df_o = merge_df(df_o, df_get, 0) # 0번 칼럼 기준으로 정렬
 
-    df_o.to_pickle(data_directory + pkl_name)
-    df_o.to_csv(data_directory + pkl_name.replace('pkl', 'csv'))
+    # df_o.to_pickle(data_directory + pkl_name)
+    # df_o.to_csv(data_directory + pkl_name.replace('pkl', 'csv'))
 
     print(com_name, f'{i + 1}/{total}', end=', ')  # 진행상황 확인용
 

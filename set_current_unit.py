@@ -3,6 +3,8 @@ import time
 from selenium.webdriver.common.by import By
 
 from open_browser import open_browser
+# from open_investors_window import open_investors_window
+
 def set_current_unit(driver, his_inv = 1):
     # 백만원 단위 표시 선정
     # css_sel = '#MDCSTAT017_FORM > div.CI-MDI-UNIT-WRAP > div > p:nth-child(2) \
@@ -17,23 +19,16 @@ def set_current_unit(driver, his_inv = 1):
         sel_1 = driver.find_element(By.CSS_SELECTOR, css_sel_1)  # 우선
         sel_1.find_element(By.CSS_SELECTOR, css_opt).click()
     else:
-        css_sel_1 = '# UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)'
-        driver.find_element(By.CSS_SELECTOR, css_sel_1).click
-        # UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)
-       # // *[ @ id = "UNIT-WRAP0"] / div / p[2] / select[2] / option[3]
-    # UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)
+        css_sel = '#MDCSTAT023_FORM > div.CI-MDI-UNIT-WRAP > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)'
+        driver.find_element(By.CSS_SELECTOR, css_sel).click()
 
-
-    # UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY
-    # sel_1 = driver.find_element(By.CSS_SELECTOR, css_sel_1)  # 우선
-    # sel_1.find_element(By.CSS_SELECTOR, css_opt).click()
     time.sleep(1)
 
     return
 
 if __name__ == '__main__':
     # open browser
-    main_url = 'http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020103'
+    main_url = 'http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020103'  # historical data
     # 개별종목 시세추이 data-menu-id: MDC0201020103
     driver = open_browser()
     driver.get(main_url)

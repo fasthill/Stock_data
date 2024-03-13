@@ -9,7 +9,7 @@ import time
 from open_browser import open_browser
 from set_current_unit import set_current_unit
 
-def open_investors_window(driver):
+def open_investors_window(driver: object) -> object:
 
     time.sleep(1)
     # jsOpenView_1 element 까지 스크롤
@@ -41,4 +41,6 @@ if __name__ == '__main__':
     #
     set_current_unit(driver, 2)
 
+    time.sleep(5)
     driver.close()
+    driver.quit()
