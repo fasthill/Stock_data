@@ -11,7 +11,7 @@ import datetime
 from open_browser import open_browser
 from set_current_unit import set_current_unit
 from open_window_historical_data import open_window_historical_data
-from set_date_n_search import set_date_n_search
+from set_date_n_search_his import set_date_n_search
 
 def get_historical_data_table(driver):  # table data 취득 and return dataframe
     # bottom_open_button = '#jsMdiContent > div > div.result_bottom.CI-MDI-COMPONENT-FOOTER.on2 > button'

@@ -12,7 +12,7 @@ from open_browser import open_browser
 from set_current_unit import set_current_unit
 from open_investors_window import open_investors_window
 from open_window_investors_data import open_window_investors_data
-from set_date_n_search import set_date_n_search
+from set_date_n_search_inv import set_date_n_search_inv
 
 def convert_date(s_date, e_date):
     date_range_ts = pd.date_range(start=s_date, end=e_date)
@@ -28,9 +28,6 @@ def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and r
     base_data_directory = './data/base_data/stock_market_holydays/'
     opening_days_kor = pd.read_pickle(base_data_directory+'opening_days_kor.pkl') # 한국 개장일 데이터
 
-    start_str = s_date.strftime('%Y-%m-%d')
-    end_str = e_date.strftime('%Y-%m-%d')
-
     date_range = convert_date(start_date, end_date)
 
     for datei in date_range:
@@ -40,12 +37,12 @@ def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and r
             continue
 
         date_str = date.strftime('%Y-%m-%d')
-        set_date_n_search(driver, date_str, date_str, 2)
+        set_date_n_search_inv(driver, date_str, date_str)
 
         df = pd.read_html(io.StringIO(str(driver.page_source)),
                           attrs={"class": "CI-GRID-BODY-TABLE"}, flavor=["lxml", "bs4"])[0]
         print("PPP")
-    return # df_get_c
+    return df
 
 
 if __name__ == '__main__':
@@ -65,11 +62,10 @@ if __name__ == '__main__':
     open_window_investors_data(driver, code_n_name)
 
     # date형식 변환후 입력
-    start_date = datetime.date(2021, 12, 27)
-    end_date = datetime.date(2024, 3, 7)
-    # start_str = start_date.strftime('%Y-%m-%d')
-    # end_str = end_date.strftime('%Y-%m-%d')
-    # set_date_n_search(driver, start_str, end_str, 2)
+    start_date = datetime.date(2024, 3, 4)
+    end_date = datetime.date(2024, 3, 4)
+    start_str = start_date.strftime('%Y-%m-%d')
+    end_str = end_date.strftime('%Y-%m-%d')
 
     df = get_investors_data_table(driver, start_date, end_date)
 

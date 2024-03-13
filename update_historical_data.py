@@ -22,7 +22,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from open_browser import open_browser
 from set_current_unit import set_current_unit
 from open_window_historical_data import open_window_historical_data
-from set_date_n_search import set_date_n_search
+from set_date_n_search_his import set_date_n_search
 from get_historical_data_table import get_historical_data_table
 from merge_df import merge_df
 
