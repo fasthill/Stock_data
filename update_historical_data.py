@@ -1,23 +1,7 @@
-from selenium import webdriver as wd
-from selenium.webdriver import ActionChains # scroll down 사용하기 위하여 선서
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
-from bs4 import BeautifulSoup as bs
-
-import datetime, time
-from datetime import date
+import datetime
 
 import pandas as pd
-import numpy as np
-import requests
-import time
-import os, sys, io
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from open_browser import open_browser
 from set_current_unit import set_current_unit
@@ -51,8 +35,8 @@ for i, (key, val) in enumerate(code.items()):
 
     open_window_historical_data(driver, com_name)
 
-    start_date = datetime.date(2022, 12, 27)
-    end_date = datetime.date(2023, 1, 7)
+    start_date = datetime.date(2023, 1, 2)
+    end_date = datetime.date(2023, 1, 5)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
     set_date_n_search_his(driver, start_str, end_str)

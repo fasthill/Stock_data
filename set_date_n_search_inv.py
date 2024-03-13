@@ -1,14 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import ActionChains
 
 import time
 import datetime
 
 from open_browser import open_browser
 from open_investors_window import open_investors_window
-from open_window_historical_data import open_window_historical_data
 from set_current_unit import set_current_unit
 
 def set_date_n_search_inv(driver, start_date_str, end_date_str):  # 일정 기간 데이터 취득
