@@ -13,13 +13,20 @@ def set_current_unit(driver, his_inv = 1):
 
     if his_inv == 1: # 1: historical current unit
         css_sel_1 = '#MDCSTAT017_FORM > div.CI-MDI-UNIT-WRAP > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY'
+        css_opt = 'option:nth-child(3)'
+        sel_1 = driver.find_element(By.CSS_SELECTOR, css_sel_1)  # 우선
+        sel_1.find_element(By.CSS_SELECTOR, css_opt).click()
     else:
-        css_sel_1 = '#MDCSTAT023_FORM > div.CI-MDI-UNIT-WRAP > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY'
-    css_opt = 'option:nth-child(3)'
+        css_sel_1 = '# UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)'
+        driver.find_element(By.CSS_SELECTOR, css_sel_1).click
+        # UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)
+       # // *[ @ id = "UNIT-WRAP0"] / div / p[2] / select[2] / option[3]
+    # UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY > option:nth-child(3)
+
 
     # UNIT-WRAP0 > div > p:nth-child(2) > select.CI-MDI-UNIT-MONEY
-    sel_1 = driver.find_element(By.CSS_SELECTOR, css_sel_1)  # 우선
-    sel_1.find_element(By.CSS_SELECTOR, css_opt).click()
+    # sel_1 = driver.find_element(By.CSS_SELECTOR, css_sel_1)  # 우선
+    # sel_1.find_element(By.CSS_SELECTOR, css_opt).click()
     time.sleep(1)
 
     return

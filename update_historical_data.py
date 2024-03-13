@@ -22,7 +22,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from open_browser import open_browser
 from set_current_unit import set_current_unit
 from open_window_historical_data import open_window_historical_data
-from set_date_n_search_his import set_date_n_search
+from set_date_n_search_his import set_date_n_search_his
 from get_historical_data_table import get_historical_data_table
 from merge_df import merge_df
 
@@ -55,7 +55,7 @@ for i, (key, val) in enumerate(code.items()):
     end_date = datetime.date(2023, 1, 7)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
-    set_date_n_search(driver, start_str, end_str)
+    set_date_n_search_his(driver, start_str, end_str)
 
     df_get = get_historical_data_table(driver)
 

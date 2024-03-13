@@ -11,7 +11,7 @@ import datetime
 from open_browser import open_browser
 from set_current_unit import set_current_unit
 from open_window_historical_data import open_window_historical_data
-from set_date_n_search_his import set_date_n_search
+from set_date_n_search_his import set_date_n_search_his
 
 def get_historical_data_table(driver):  # table data 취득 and return dataframe
     # bottom_open_button = '#jsMdiContent > div > div.result_bottom.CI-MDI-COMPONENT-FOOTER.on2 > button'
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     end_date = datetime.date(2024, 3, 7)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
-    set_date_n_search(driver, start_str, end_str, 1)
+    set_date_n_search_his(driver, start_str, end_str, 1)
 
     df = get_historical_data_table(driver)
 

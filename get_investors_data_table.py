@@ -24,12 +24,16 @@ def convert_date(s_date, e_date):
 def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and return dataframe
     # 여기에 set data n search를 같이 집어 넣어서 table를 찾아야 함.
     # 매일 매일의 테이블을 append 시켜서 한개의 table로 만들어 반환해야함.
+    index_name = ['investor', 'sell_quantity', 'buy_quantity', 'pure_buy_quantity', 'sell', 'buy', 'pure_buy']
+    column_name = ['financial', 'insurance', 'invtrust', 'privequity', 'bank', 'financeetc', 'pension',
+                   'institution', 'corporateetc', 'retail', 'foreigner', 'foreigneretc', 'total']
 
     base_data_directory = './data/base_data/stock_market_holydays/'
     opening_days_kor = pd.read_pickle(base_data_directory+'opening_days_kor.pkl') # 한국 개장일 데이터
 
     date_range = convert_date(start_date, end_date)
 
+    df_org = None
     for datei in date_range:
 
         date = datetime.datetime.strptime(datei, "%Y%m%d").date()
@@ -41,8 +45,21 @@ def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and r
 
         df = pd.read_html(io.StringIO(str(driver.page_source)),
                           attrs={"class": "CI-GRID-BODY-TABLE"}, flavor=["lxml", "bs4"])[0]
-        print("PPP")
-    return df
+
+        df.columns = index_name
+        df_new = df[['investor', 'pure_buy']]  # 순매수 금액
+        df_new.set_index('investor', inplace=True)
+        dft = df_new.T
+        dft.columns = column_name
+        dft.insert(0, "date", datetime.datetime.strptime(datei, "%Y%m%d"))
+        dft.reset_index(drop=True, inplace=True)
+        if df_org is None:
+            df_org = dft.copy()
+            continue
+        #         df_org = df_org.append(dft, ignore_index=True) # append will be depreciated
+        df_org = pd.concat([df_org, dft], ignore_index=True)
+
+    return df_org
 
 
 if __name__ == '__main__':
@@ -63,7 +80,7 @@ if __name__ == '__main__':
 
     # date형식 변환후 입력
     start_date = datetime.date(2024, 3, 4)
-    end_date = datetime.date(2024, 3, 4)
+    end_date = datetime.date(2024, 3, 6)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
 
