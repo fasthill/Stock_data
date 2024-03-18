@@ -50,8 +50,8 @@ for i, (key, val) in enumerate(code.items()):
 
     print(com_name, f'{i + 1}/{total}', end=', ')  # 진행상황 확인용
 
-    if i == 0:
-        break
+    # if i == 0:
+    #     break
 
 driver.close()
 driver.quit()

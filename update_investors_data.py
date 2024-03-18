@@ -56,6 +56,12 @@ for i, (key, val) in enumerate(code.items()):
 
     df_get = get_investors_data_table(driver, start_date, end_date)
 
+    # delete "total" column
+    df_col = ['date', 'retail', 'foreigner', 'institution', 'financial', 'invtrust',
+              'pension', 'privequity', 'bank', 'insurance', 'financeetc',
+              'corporateetc', 'foreigneretc']
+    df_get = df_get[df_col]
+
     df_o = merge_df(df_o, df_get, 0) # 0번 칼럼 기준으로 정렬
 
     df_o.to_pickle(data_directory + pkl_name)
