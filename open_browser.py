@@ -7,7 +7,7 @@ import time
 
 # set driver
 def open_browser():
-    service = Service(r"chromedriver.exe")
+    service = Service(r"chromedriver/chromedriver.exe")
     options = wd.ChromeOptions()
     options.add_experimental_option("detach", True)  # let windows stay open, this prevents windows from disappearing
 
