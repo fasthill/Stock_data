@@ -1,9 +1,8 @@
+import time
 from selenium import webdriver as wd
 from selenium.webdriver.chrome.service import Service
-
 from selenium.webdriver.common.by import By
 
-import time
 
 # set driver
 def open_browser():

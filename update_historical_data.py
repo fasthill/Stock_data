@@ -1,16 +1,14 @@
-
 import datetime
-
 import pandas as pd
 
-from open_browser import open_browser
-from set_current_unit import set_current_unit
-from open_window_historical_data import open_window_historical_data
-from set_date_n_search_his import set_date_n_search_his
+from data.constant.constants import COMPANY_CODE
 from get_historical_data_table import get_historical_data_table
 from merge_df import merge_df
+from open_browser import open_browser
+from open_window_historical_data import open_window_historical_data
+from set_current_unit import set_current_unit
+from set_date_n_search_his import set_date_n_search_his
 
-from data.constant.constants import COMPANY_CODE
 code = COMPANY_CODE
 
 # open browser
@@ -43,7 +41,7 @@ for i, (key, val) in enumerate(code.items()):
 
     df_get = get_historical_data_table(driver)
 
-    df_o = merge_df(df_o, df_get, 0) # 0번 칼럼 기준으로 정렬
+    df_o = merge_df(df_o, df_get, 0)  # 0번 칼럼 기준으로 정렬
 
     df_o.to_pickle(data_directory + pkl_name)
     df_o.to_csv(data_directory + pkl_name.replace('pkl', 'csv'))

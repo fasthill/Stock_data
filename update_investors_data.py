@@ -1,17 +1,15 @@
-
 import datetime
-
 import pandas as pd
 
+from data.constant.constants import COMPANY_CODE
+from get_investors_data_table import get_investors_data_table
+from merge_df import merge_df
 from open_browser import open_browser
+from open_investors_window import open_investors_window
+from open_window_investors_data import open_window_investors_data
 from set_current_unit import set_current_unit
 from set_date_n_search_inv import set_date_n_search_inv
-from get_investors_data_table import get_investors_data_table
-from open_window_investors_data import open_window_investors_data
-from open_investors_window import open_investors_window
-from merge_df import merge_df
 
-from data.constant.constants import COMPANY_CODE
 code = COMPANY_CODE
 
 # open browser
@@ -62,7 +60,7 @@ for i, (key, val) in enumerate(code.items()):
               'corporateetc', 'foreigneretc']
     df_get = df_get[df_col]
 
-    df_o = merge_df(df_o, df_get, 0) # 0번 칼럼 기준으로 정렬
+    df_o = merge_df(df_o, df_get, 0)  # 0번 칼럼 기준으로 정렬
 
     df_o.to_pickle(data_directory + pkl_name)
     df_o.to_csv(data_directory + pkl_name.replace('pkl', 'csv'))

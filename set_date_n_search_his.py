@@ -1,15 +1,15 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import ActionChains
-
-import time
 import datetime
+import time
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from open_browser import open_browser
 from open_investors_window import open_investors_window
 from open_window_historical_data import open_window_historical_data
 from set_current_unit import set_current_unit
+
 
 def set_date_n_search_his(driver, start_date_str, end_date_str):  # 일정 기간 데이터 취득
     # end_date를 먼저 입력하고 start date 입력. 반대로 하면 start date가 이전날짜로  reset되어짐
@@ -30,6 +30,7 @@ def set_date_n_search_his(driver, start_date_str, end_date_str):  # 일정 기�
 
     return
 
+
 if __name__ == '__main__':
     #
     main_url = 'http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020103'
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
 
-    set_current_unit(driver, 1) # historical = 1, investors = 2
+    set_current_unit(driver, 1)  # historical = 1, investors = 2
     com_name = '005930/삼성전자'  # '000660/SK하이닉스'
     open_window_historical_data(driver, com_name)
     set_date_n_search_his(driver, start_str, end_str)

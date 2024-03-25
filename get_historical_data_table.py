@@ -1,17 +1,16 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver import ActionChains
-
-import pandas as pd
-import numpy as np
-
-import io
-import time
 import datetime
+import io
+import numpy as np
+import pandas as pd
+import time
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 
 from open_browser import open_browser
-from set_current_unit import set_current_unit
 from open_window_historical_data import open_window_historical_data
+from set_current_unit import set_current_unit
 from set_date_n_search_his import set_date_n_search_his
+
 
 def get_historical_data_table(driver):  # table data 취득 and return dataframe
     # bottom_open_button = '#jsMdiContent > div > div.result_bottom.CI-MDI-COMPONENT-FOOTER.on2 > button'
@@ -23,16 +22,18 @@ def get_historical_data_table(driver):  # table data 취득 and return dataframe
     # read_html로 먼저 읽고 같은 column형식으로 70~80개씩 끊어서 df를 형성하여 concat으로 처리하는 로직 필요
 
     c_tr = \
-    '#jsMdiContent > div > div.CI-GRID-AREA.CI-GRID-ON-WINDOWS.CI-GRID-CLICKED > div.CI-GRID-WRAPPER > \
-    div.CI-GRID-MAIN-WRAPPER > div.CI-GRID-BODY-WRAPPER > div > div > table > tbody > tr'
+        '#jsMdiContent > div > div.CI-GRID-AREA.CI-GRID-ON-WINDOWS.CI-GRID-CLICKED > div.CI-GRID-WRAPPER > \
+        div.CI-GRID-MAIN-WRAPPER > div.CI-GRID-BODY-WRAPPER > div > div > table > tbody > tr'
     no_of_rows = driver.find_elements(By.CSS_SELECTOR, c_tr)
     # print("*************", len(no_of_rows))
 
     df = \
-    pd.read_html(io.StringIO(str(driver.page_source)), attrs={"class": "CI-GRID-BODY-TABLE"}, flavor=["lxml", "bs4"])[0]
+        pd.read_html(io.StringIO(str(driver.page_source)), attrs={"class": "CI-GRID-BODY-TABLE"},
+                     flavor=["lxml", "bs4"])[0]
 
     column_name = \
-    ['date', 'close', 'change', 'close_cr', 'open', 'high', 'low', 'vol', 'vol_amount','total_amount', 'total_counts']
+        ['date', 'close', 'change', 'close_cr', 'open', 'high', 'low', 'vol', 'vol_amount', 'total_amount',
+         'total_counts']
     # ['일자', '종가', '대비', '등락률', '시가', '고가', '저가', '거래량', '거래대금', '시가총액', '상장주식수']
 
     df.columns = column_name
@@ -63,7 +64,7 @@ if __name__ == '__main__':
     end_date = datetime.date(2024, 3, 7)
     start_str = start_date.strftime('%Y-%m-%d')
     end_str = end_date.strftime('%Y-%m-%d')
-    set_date_n_search_his(driver, start_str, end_str, 1)
+    set_date_n_search_his(driver, start_str, end_str)
 
     df = get_historical_data_table(driver)
 

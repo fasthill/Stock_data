@@ -1,16 +1,15 @@
 # KRX 정보데이터 시스템에서 취득 대상 회사 시세 추이 (개벌종목 시세 추이) 화면으로 이동하기 위한 function
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import ActionChains
-
 import time
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from open_browser import open_browser
 from set_current_unit import set_current_unit
 
-def open_investors_window(driver: object) -> object:
 
+def open_investors_window(driver: object) -> object:
     time.sleep(1)
     # jsOpenView_1 element 까지 스크롤
     # id가 jsOpenView_1 인 element 를 찾음

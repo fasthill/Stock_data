@@ -1,5 +1,6 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 
 def merge_df(df_old, df_add, sel_col):
     df_merge = pd.concat([df_old, df_add], ignore_index=True)
@@ -11,11 +12,9 @@ def merge_df(df_old, df_add, sel_col):
 
 
 if __name__ == '__main__':
-    df_old = pd.read_csv('data/test/d_old.csv',  index_col=0)
-    df_add = pd.read_csv('data/test/d_new.csv',  index_col=0)
+    df_old = pd.read_csv('data/test/d_old.csv', index_col=0)
+    df_add = pd.read_csv('data/test/d_new.csv', index_col=0)
 
     df_merge = merge_df(df_old, df_add, 0)
     df_merge.to_csv('data/test/d_merge.csv')
     df_merge.to_pickle('data/test/d_merge.pkl')
-
-

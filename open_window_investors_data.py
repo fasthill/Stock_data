@@ -1,9 +1,8 @@
 # KRX 정보데이터 시스템에서 취득 대상 회사 시세 추이 (개벌종목 시세 추이) 화면으로 이동하기 위한 function
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from open_browser import open_browser
 from open_investors_window import open_investors_window
