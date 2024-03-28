@@ -2,11 +2,11 @@ import datetime
 import pandas as pd
 
 from data.constant.constants import COMPANY_CODE
-from get_historical_data_table import get_historical_data_table
-from merge_df import merge_df
-from open_browser import open_browser
-from open_window_historical_data import open_window_historical_data
-from set_current_unit import set_current_unit
+from src.get_company_data.get_historical_data_table import get_historical_data_table
+from src.get_company_data.merge_df import merge_df
+from src.get_company_data.open_browser import open_browser
+from src.get_company_data.open_window_historical_data import open_window_historical_data
+from src.get_company_data.set_current_unit import set_current_unit
 from set_date_n_search_his import set_date_n_search_his
 
 code = COMPANY_CODE

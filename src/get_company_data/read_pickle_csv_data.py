@@ -1,14 +1,6 @@
-import datetime
 import pandas as pd
 
 from data.constant.constants import COMPANY_CODE
-from get_investors_data_table import get_investors_data_table
-from merge_df import merge_df
-from open_browser import open_browser
-from open_investors_window import open_investors_window
-from open_window_investors_data import open_window_investors_data
-from set_current_unit import set_current_unit
-from set_date_n_search_inv import set_date_n_search_inv
 
 code = COMPANY_CODE
 
