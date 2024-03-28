@@ -199,7 +199,6 @@ def get_ticker_data(ticker, startdate, enddate, col_name):
 
 # In[17]:
 
-
 # startdate = datetime.datetime(2021,12,25)
 startdate = datetime.date(2021,12,25)
 # enddate = datetime.datetime(2023,3,23)
