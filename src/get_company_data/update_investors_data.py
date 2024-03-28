@@ -3,7 +3,7 @@ import pandas as pd
 
 from data.constant.constants import COMPANY_CODE
 from src.get_company_data.get_investors_data_table import get_investors_data_table
-from src.get_company_data.merge_df import merge_df
+from src.get_company_data.concat_df import merge_df
 from src.get_company_data.open_browser import open_browser
 from src.get_company_data.open_investors_window import open_investors_window
 from src.get_company_data.open_window_investors_data import open_window_investors_data

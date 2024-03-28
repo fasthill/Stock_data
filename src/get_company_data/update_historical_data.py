@@ -3,7 +3,7 @@ import pandas as pd
 
 from data.constant.constants import COMPANY_CODE
 from src.get_company_data.get_historical_data_table import get_historical_data_table
-from src.get_company_data.merge_df import merge_df
+from src.get_company_data.concat_df import merge_df
 from src.get_company_data.open_browser import open_browser
 from src.get_company_data.open_window_historical_data import open_window_historical_data
 from src.get_company_data.set_current_unit import set_current_unit
