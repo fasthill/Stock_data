@@ -39,4 +39,3 @@ if __name__ == '__main__':
     df_up = update_data(df, file_name, dir_name)
     save_data(df_up, file_name, dir_name)
 
-# 2023년 5월부터 11월 사이의 데이터가 없음. 추가로 일자를 확인하여 빠짐없이 추가해야 함.
