@@ -1,16 +1,15 @@
 import datetime
-import numpy as np
-import pandas as pd
+
 import yfinance as yf
 
-from make_data_file import make_pickle
+from save_data_file import save_data
 
 yf.pdr_override()
 
 
-def get_ticker_data(ticker, startdate, enddate, col_name):
+def get_ticker_data(ticker, startdate, enddate, col_name, yrs="3y"):
     ydata = yf.Ticker(ticker)
-    rdata = ydata.history(period="2y")  # 오늘부터 2년치
+    rdata = ydata.history(period=yrs)  # yrs = 오늘부터 몇년전까지?
     rdata.reset_index('Date', inplace=True)
     rdata['Date'] = rdata['Date'].dt.date  # datetime64 to datetime.date()
     rdata = rdata[(rdata['Date'] <= enddate) & (rdata['Date'] >= startdate)]
@@ -29,9 +28,9 @@ if __name__ == '__main__':
 
     ticker_ = '^DJI'
     col_name_ = 'dji'
-    dji = get_ticker_data(ticker_, startdate, enddate, col_name_)
+    dji = get_ticker_data(ticker_, startdate, enddate, col_name_, "3y")
 
     file_name = col_name_ + '.pkl'
     dir_name = '../../../data/common/test/'
-    make_pickle(dji, file_name, dir_name)
+    save_data(dji, file_name, dir_name)
     print("test")

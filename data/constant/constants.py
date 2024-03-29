@@ -34,3 +34,6 @@ US_SECTOR_LIST = [['^SP500-40',  'spsy',  'spsy.pkl'], ['^GSPE', 'spny', 'spny.p
                   ['^SP500-15', 'splrcm', 'splrcm.pkl'], ['^BANK', 'ixbk', 'ixbk.pkl'], ['^OFIN', 'ixfn', 'ixfn.pkl'],
                   ['^INDS', 'ixid', 'ixid.pkl'], ['^INSR', 'ixis', 'ixis.pkl'], ['^IXCO', 'ixk', 'ixk.pkl'], 
                   ['^TRAN', 'ixtr', 'ixtr.pkl'], ['^IXTC', 'ixut', 'ixut.pkl'], ['^NBI', 'nbi', 'nbi.pkl'], ['^BKX', 'bkx', 'bkx.pkl']]
+
+HEADERS = {'User-Agent': 'Mozilla/6.0 (Macintosh; Intel Mac OS X 10_11_5) \
+           AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
