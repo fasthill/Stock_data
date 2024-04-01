@@ -2,12 +2,12 @@ import datetime
 import pandas as pd
 
 from data.constant.constants import COMPANY_CODE
-from src.get_company_data.get_historical_data_table import get_historical_data_table
+from set_date_n_search_his import set_date_n_search_his
 from src.get_company_data.concat_df import merge_df
+from src.get_company_data.get_historical_data_table import get_historical_data_table
 from src.get_company_data.open_browser import open_browser
 from src.get_company_data.open_window_historical_data import open_window_historical_data
 from src.get_company_data.set_current_unit import set_current_unit
-from set_date_n_search_his import set_date_n_search_his
 
 code = COMPANY_CODE
 
@@ -19,7 +19,7 @@ driver.get(main_url)
 
 set_current_unit(driver, 1)
 
-data_directory = 'data/historical_data/'
+data_directory = '../../data/company/historical_data/'
 total = len(code)
 
 for i, (key, val) in enumerate(code.items()):

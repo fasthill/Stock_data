@@ -18,14 +18,14 @@ def convert_date(s_date, e_date):
     return date_range
 
 
-def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and return dataframe
+def get_investors_data_table(driver_, s_date, e_date):  # table data 취득 and return dataframe
     # 여기에 set data n search를 같이 집어 넣어서 table를 찾아야 함.
     # 매일 매일의 테이블을 append 시켜서 한개의 table로 만들어 반환해야함.
     index_name = ['investor', 'sell_quantity', 'buy_quantity', 'pure_buy_quantity', 'sell', 'buy', 'pure_buy']
     column_name = ['financial', 'insurance', 'invtrust', 'privequity', 'bank', 'financeetc', 'pension',
                    'institution', 'corporateetc', 'retail', 'foreigner', 'foreigneretc', 'total']
 
-    base_data_directory = './data/base_data/stock_market_holydays/'
+    base_data_directory = '../../data/base_data/stock_market_holydays/'
     opening_days_kor = pd.read_pickle(base_data_directory + 'opening_days_kor.pkl')  # 한국 개장일 데이터
 
     date_range = convert_date(s_date, e_date)
@@ -38,9 +38,9 @@ def get_investors_data_table(driver, s_date, e_date):  # table data 취득 and r
             continue
 
         date_str = date.strftime('%Y-%m-%d')
-        set_date_n_search_inv(driver, date_str, date_str)
+        set_date_n_search_inv(driver_, date_str, date_str)
 
-        df = pd.read_html(io.StringIO(str(driver.page_source)),
+        df = pd.read_html(io.StringIO(str(driver_.page_source)),
                           attrs={"class": "CI-GRID-BODY-TABLE"}, flavor=["lxml", "bs4"])[0]
 
         df.columns = index_name
