@@ -1,7 +1,7 @@
 import time
 from selenium.webdriver.common.by import By
 
-from open_browser import open_browser
+from src.get_company_data.open_browser import open_browser
 
 
 # from open_investors_window import open_investors_window

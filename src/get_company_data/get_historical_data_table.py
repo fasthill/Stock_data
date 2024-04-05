@@ -6,10 +6,10 @@ import time
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
-from open_browser import open_browser
-from open_window_historical_data import open_window_historical_data
-from set_current_unit import set_current_unit
-from set_date_n_search_his import set_date_n_search_his
+from src.get_company_data.open_browser import open_browser
+from src.get_company_data.open_window_historical_data import open_window_historical_data
+from src.get_company_data.set_current_unit import set_current_unit
+from src.get_company_data.set_date_n_search_his import set_date_n_search_his
 
 
 def get_historical_data_table(driver):  # table data 취득 and return dataframe

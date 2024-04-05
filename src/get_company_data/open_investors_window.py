@@ -5,8 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from open_browser import open_browser
-from set_current_unit import set_current_unit
+from src.get_company_data.open_browser import open_browser
+from src.get_company_data.set_current_unit import set_current_unit
 
 
 def open_investors_window(driver: object) -> object:

@@ -2,7 +2,7 @@ import datetime
 
 import yfinance as yf
 
-from save_data_file import save_data
+from src.get_common_data.get_common_data_korea.save_data_file import save_data
 
 yf.pdr_override()
 

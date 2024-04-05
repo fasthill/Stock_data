@@ -5,8 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
-from open_browser import open_browser
-from set_current_unit import set_current_unit
+from src.get_company_data.open_browser import open_browser
+from src.get_company_data.set_current_unit import set_current_unit
 
 
 # def get_data_company(code_n_name):

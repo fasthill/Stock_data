@@ -1,7 +1,7 @@
 import os
 
 import pandas as pd
-from concat_df import concat_df
+from src.get_common_data.get_common_data_korea.concat_df import concat_df
 
 
 def save_data(df_s, file_name, dir_name):

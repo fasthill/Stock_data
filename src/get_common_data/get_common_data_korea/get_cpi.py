@@ -5,7 +5,7 @@ import cloudscraper
 import pandas as pd
 
 from data.constant.constants import HEADERS
-from save_data_file import update_data, save_data
+from src.get_common_data.get_common_data_korea.save_data_file import update_data, save_data
 
 
 def get_cpi(url, column, sel_column):

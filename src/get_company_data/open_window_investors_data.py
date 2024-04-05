@@ -4,9 +4,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from open_browser import open_browser
-from open_investors_window import open_investors_window
-from set_current_unit import set_current_unit
+from src.get_company_data.open_browser import open_browser
+from src.get_company_data.open_investors_window import open_investors_window
+from src.get_company_data.set_current_unit import set_current_unit
 
 
 # def get_data_company(code_n_name):
