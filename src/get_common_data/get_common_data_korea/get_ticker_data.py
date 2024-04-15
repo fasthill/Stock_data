@@ -8,8 +8,13 @@ yf.pdr_override()
 
 
 def get_ticker_data(ticker, startdate, enddate, col_name, yrs="3y"):
-    ydata = yf.Ticker(ticker)
-    rdata = ydata.history(period=yrs)  # yrs = 오늘부터 몇년전까지?
+    while True:
+        ydata = yf.Ticker(ticker)
+        rdata = ydata.history(period=yrs)  # yrs = 오늘부터 몇년전까지?
+        if len(rdata) <= 100: # 인터넷 속도로 인한 데이터 취득이 되지 않았을 때 임의의 수(100)으로 비교
+            pass
+        else:
+            break
     rdata.reset_index('Date', inplace=True)
     rdata['Date'] = rdata['Date'].dt.date  # datetime64 to datetime.date()
     rdata = rdata[(rdata['Date'] <= enddate) & (rdata['Date'] >= startdate)]
